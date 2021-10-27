@@ -1,0 +1,40 @@
+<h1>{{title}}</h1>
+<div class="form-group">
+<form  #userForm="ngForm">
+  <label>Employee No :</label>
+  <input  minlength="1" maxlength="5" type="text"   id="Value1" name="Value1" required [(ngModel)]="newid.Value"  placeholder="EmployeeNo"  />
+  <span *ngIf ="newid.invalid && newid.touched" class="error">No filed is required</span>
+  <br><br>
+ <label>Employee Name :</label>
+  <input pattern="[a-zA-Z]*" type="text"   id="Value" name="Value" required [(ngModel)]="newItem.Value"  placeholder="EmployeeName"  />
+  <span *ngIf ="newItem.invalid && newItem.touched" class="error">Name filed is required</span>
+  </form>
+  <br><br>
+  <button [disabled]="userForm.invalid" type="submit" (click)="AddItem()" [disabled]="IsForUpdate == true">Add</button>
+  <button type="submit" (click)="UpdateItem()" [disabled]="IsForUpdate == false" >Update</button>
+</div>
+<div class="panel-body" style="text-align: -webkit-center;">
+<table class="table-responsive-sm">
+  <thead>
+    <tr>
+      <td>Employee No</td>
+      <td>Employee Name</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+ 
+  
+  <tbody>
+    <tr *ngFor="let data of myItems;let data1 of myid;let i= index" >
+      <td>{{myid[i].Value}} </td>
+      <td>{{myItems[i].Value}}</td>
+     <td><button type="edit " (click)=" EditItem(i)">Edit</button></td><br>
+      <td><button type="delete" (click)="DeleteItem(i)">Delete</button></td>
+      
+    </tr>
+  </tbody>
+</table>
+</div>
+      
+   
+
